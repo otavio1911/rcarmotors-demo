@@ -1,1 +1,834 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b0e">
 
+<title>RCARMOTORS | Demonstração Black Tech</title>
+<meta name="description" content="Projeto demonstrativo de site automotivo desenvolvido pela Black Tech.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090b0e;
+  --surface: #13171c;
+  --surface2: #1b2027;
+  --red: #f23a3a;
+  --red2: #b91f2c;
+  --white: #fff;
+  --muted: #aeb6c0;
+  --border: #303741;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Inter, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(1180px, 91%);
+  margin: auto;
+}
+
+h1, h2, h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+p { line-height: 1.8; }
+
+section { padding: 95px 0; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(9,11,14,.95);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.nav {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.logo {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 31px;
+  letter-spacing: 1px;
+}
+
+.logo span { color: var(--red); }
+
+nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+nav a {
+  color: #d8dde4;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+nav a:hover { color: var(--red); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: white;
+  padding: 16px 25px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  transition: .25s;
+}
+
+.btn:hover {
+  background: #ff5555;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px #f23a3a33;
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: #6c7785;
+}
+
+.btn-outline:hover {
+  background: #252b33;
+  border-color: white;
+}
+
+.hero {
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background:
+    linear-gradient(90deg, #090b0efc 0%, #090b0ee8 42%, #090b0e55 100%),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1900&q=85")
+    center/cover;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #090b0e 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.hero .container { position: relative; }
+
+.eyebrow {
+  display: inline-block;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 800;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(58px, 8vw, 108px);
+  line-height: .94;
+  letter-spacing: -1px;
+  max-width: 850px;
+  margin-bottom: 28px;
+}
+
+.hero h1 span { color: var(--red); }
+
+.hero p {
+  max-width: 590px;
+  color: #d2d8e0;
+  font-size: 16px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.stats {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #101318;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 36px;
+  color: var(--red);
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-title h2 {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.section-title h2 span { color: var(--red); }
+
+.section-title p {
+  max-width: 660px;
+  color: var(--muted);
+  margin: auto;
+}
+
+.line {
+  width: 70px;
+  height: 4px;
+  background: var(--red);
+  margin: 22px auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  background: linear-gradient(145deg, var(--surface2), var(--surface));
+  border: 1px solid var(--border);
+  padding: 34px;
+  border-radius: 8px;
+  transition: .3s;
+}
+
+.card:hover {
+  border-color: var(--red);
+  transform: translateY(-7px);
+}
+
+.card .icon {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.about { background: #101318; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 55px;
+}
+
+.about img {
+  width: 100%;
+  height: 470px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.about h2 {
+  font-size: clamp(40px, 5vw, 65px);
+  line-height: 1;
+}
+
+.about h2 span { color: var(--red); }
+
+.about p { color: var(--muted); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  transition: .3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.025);
+  border-color: var(--red);
+}
+
+.quote-section {
+  background: #101318;
+}
+
+.form-wrap {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 55px;
+  align-items: start;
+}
+
+.form-info h2 {
+  font-size: clamp(42px, 5vw, 65px);
+  line-height: 1;
+}
+
+.form-info h2 span { color: var(--red); }
+.form-info p { color: var(--muted); }
+
+.form-box {
+  background: #1a1f26;
+  padding: 35px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.field { margin-bottom: 18px; }
+
+.field label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  background: #0c0f13;
+  border: 1px solid #39414c;
+  border-radius: 5px;
+  padding: 15px;
+  color: white;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--red);
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-box .btn { width: 100%; }
+
+.notice {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.preview {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  background: #0d1115;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #e9edf2;
+  line-height: 1.7;
+  display: none;
+}
+
+.contact {
+  text-align: center;
+  background: radial-gradient(circle at top, #38151b, #090b0e 65%);
+}
+
+.contact h2 {
+  font-size: clamp(42px, 5vw, 70px);
+  margin-bottom: 15px;
+}
+
+.contact h2 span { color: var(--red); }
+
+.contact p {
+  max-width: 640px;
+  margin: 0 auto 25px;
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 35px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer p {
+  max-width: 850px;
+  margin: 0 auto 12px;
+}
+
+.top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--red);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 23px;
+  font-weight: 800;
+  z-index: 50;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    flex-wrap: wrap;
+    padding: 16px 0;
+  }
+
+  nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .grid, .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-grid, .form-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  section { padding: 70px 0; }
+
+  .hero { min-height: 620px; }
+
+  .hero h1 { font-size: 60px; }
+
+  .grid, .gallery, .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid { gap: 8px; }
+
+  .stat strong { font-size: 27px; }
+
+  .stat span { font-size: 10px; }
+
+  .gallery img { height: 270px; }
+
+  .about img { height: 300px; }
+
+  .form-box { padding: 22px; }
+
+  .hero-actions .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#inicio">RCAR<span>MOTORS</span></a>
+
+    <nav aria-label="Menu principal">
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#orcamento">Orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="container">
+    <span class="eyebrow">Automotive concept • Black Tech</span>
+
+    <h1>
+      PERFORMANCE.<br>
+      PRECISÃO.<br>
+      <span>CONFIANÇA.</span>
+    </h1>
+
+    <p>
+      Uma experiência digital criada para apresentar
+      serviços automotivos com modernidade, clareza
+      e personalidade.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#orcamento" class="btn">Solicitar orçamento ↗</a>
+      <a href="#servicos" class="btn btn-outline">Explorar serviços</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat">
+      <strong>01</strong>
+      <span>Visual premium</span>
+    </div>
+
+    <div class="stat">
+      <strong>02</strong>
+      <span>Serviços organizados</span>
+    </div>
+
+    <div class="stat">
+      <strong>03</strong>
+      <span>Contato facilitado</span>
+    </div>
+  </div>
+</div>
+
+<section id="servicos">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow">Serviços ilustrativos</span>
+      <h2>O QUE PODEMOS <span>APRESENTAR</span></h2>
+      <div class="line"></div>
+      <p>
+        Exemplos de categorias que podem ser exibidas em um site automotivo.
+        Os serviços reais precisam ser confirmados com a oficina.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="icon">🔧</div>
+        <h3>Mecânica geral</h3>
+        <p>Apresentação de soluções para manutenção e reparação automotiva.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🛢️</div>
+        <h3>Troca de óleo</h3>
+        <p>Espaço para informações sobre lubrificação e manutenção preventiva.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🛑</div>
+        <h3>Sistema de freios</h3>
+        <p>Área para explicar serviços de inspeção e manutenção de freios.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">⚙️</div>
+        <h3>Suspensão</h3>
+        <p>Apresentação de avaliações e cuidados com componentes da suspensão.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">💻</div>
+        <h3>Diagnóstico</h3>
+        <p>Espaço para descrever avaliações técnicas e identificação de falhas.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🚘</div>
+        <h3>Revisão preventiva</h3>
+        <p>Seção dedicada à importância da manutenção periódica do veículo.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="container about-grid">
+
+    <img
+      src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1000&q=85"
+      alt="Oficina automotiva ilustrativa"
+      loading="lazy"
+    >
+
+    <div>
+      <span class="eyebrow">Conceito digital</span>
+      <h2>UMA NOVA FORMA DE <span>APRESENTAR SUA OFICINA.</span></h2>
+
+      <p>
+        Este projeto demonstra como uma oficina pode apresentar
+        seus serviços, diferenciais e canais de contato
+        em um único ambiente digital.
+      </p>
+
+      <p>
+        Em uma versão oficial, esta seção poderia contar
+        a história real da empresa, apresentar a equipe
+        e destacar suas especialidades.
+      </p>
+
+      <a href="#orcamento" class="btn">Ver orçamento demonstrativo</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="container">
+
+    <div class="section-title">
+      <span class="eyebrow">Galeria conceitual</span>
+      <h2>UNIVERSO <span>AUTOMOTIVO</span></h2>
+      <div class="line"></div>
+      <p>Imagens ilustrativas para demonstrar o estilo visual do projeto.</p>
+    </div>
+
+    <div class="gallery">
+
+      <img
+        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+        alt="Carro esportivo ilustrativo"
+        loading="lazy"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+        alt="Veículo esportivo ilustrativo"
+        loading="lazy"
+      >
+
+      <img
+        src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=800&q=80"
+        alt="Ambiente automotivo ilustrativo"
+        loading="lazy"
+      >
+
+    </div>
+  </div>
+</section>
+
+<section class="quote-section" id="orcamento">
+  <div class="container form-wrap">
+
+    <div class="form-info">
+      <span class="eyebrow">Orçamento digital</span>
+      <h2>SEU CARRO.<br><span>NOSSA ATENÇÃO.</span></h2>
+
+      <p>
+        Demonstração de um formulário para facilitar
+        o primeiro contato entre o motorista e a oficina.
+      </p>
+
+      <p>
+        Em um site oficial, os dados poderiam ser enviados
+        diretamente para o WhatsApp autorizado da empresa.
+      </p>
+    </div>
+
+    <div class="form-box">
+
+      <form id="formOrcamento">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="nome">Seu nome</label>
+            <input id="nome" name="nome" placeholder="Ex.: João" required maxlength="80">
+          </div>
+
+          <div class="field">
+            <label for="veiculo">Modelo do veículo</label>
+            <input id="veiculo" name="veiculo" placeholder="Ex.: Honda Civic" required maxlength="80">
+          </div>
+
+          <div class="field">
+            <label for="ano">Ano do veículo</label>
+            <input id="ano" name="ano" type="number" min="1950" max="2030" placeholder="Ex.: 2020" required>
+          </div>
+
+          <div class="field">
+            <label for="servico">Serviço desejado</label>
+            <select id="servico" name="servico" required>
+              <option value="">Selecione</option>
+              <option>Mecânica geral</option>
+              <option>Troca de óleo</option>
+              <option>Freios</option>
+              <option>Suspensão</option>
+              <option>Diagnóstico</option>
+              <option>Revisão preventiva</option>
+              <option>Outro serviço</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="field">
+          <label for="descricao">Descreva o que você precisa</label>
+          <textarea id="descricao" name="descricao" placeholder="Conte brevemente o problema ou serviço desejado..." required maxlength="1000"></textarea>
+        </div>
+
+        <button type="submit" class="btn">Gerar prévia do orçamento ↗</button>
+
+        <p class="notice">
+          Demonstração: nenhum dado é enviado ou armazenado.
+          A mensagem aparecerá somente nesta página.
+        </p>
+
+      </form>
+
+      <div id="preview" class="preview" role="status" aria-live="polite"></div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="container">
+    <span class="eyebrow">Sua oficina no digital</span>
+
+    <h2>MAIS PRESENÇA.<br><span>MAIS PRATICIDADE.</span></h2>
+
+    <p>
+      Uma proposta de experiência digital que conecta
+      a apresentação de serviços à facilidade de contato.
+    </p>
+
+    <a href="#orcamento" class="btn">Experimentar formulário</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>
+      Projeto conceitual independente desenvolvido pela Black Tech.
+      Não é o site oficial da RCARMOTORS e não representa
+      vínculo comercial ou autorização do estabelecimento.
+      Serviços, textos e fotografias são ilustrativos.
+      Nenhum orçamento é enviado à oficina por esta página.
+    </p>
+    <p>© 2026 Black Tech — Demonstração.</p>
+  </div>
+</footer>
+
+<a href="#inicio" class="top" aria-label="Voltar ao topo">↑</a>
+
+<script>
+const form = document.getElementById("formOrcamento");
+const preview = document.getElementById("preview");
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  const nome = document.getElementById("nome").value.trim();
+  const veiculo = document.getElementById("veiculo").value.trim();
+  const ano = document.getElementById("ano").value;
+  const servico = document.getElementById("servico").value;
+  const descricao = document.getElementById("descricao").value.trim();
+
+  const mensagem =
+`🚘 SOLICITAÇÃO DE ORÇAMENTO — DEMONSTRAÇÃO
+
+👤 Nome: ${nome}
+🚗 Veículo: ${veiculo}
+📅 Ano: ${ano}
+🔧 Serviço: ${servico}
+
+📝 Descrição:
+${descricao}
+
+Mensagem gerada em um projeto demonstrativo da Black Tech.`;
+
+  preview.textContent = mensagem;
+  preview.style.display = "block";
+  preview.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+</script>
+
+</body>
+</html>
